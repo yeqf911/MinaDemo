@@ -30,9 +30,14 @@ public class SocketClient {
             reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             bufferedReader = new BufferedReader(new InputStreamReader(System.in));
             startResponseListener(reader);
+            int count = 0;
             while (!(messageContent = bufferedReader.readLine()).equals("bye")) {
                 //System.out.println(messageContent);
-                writer.write("client " + socket.hashCode() + ": " + messageContent + "\n");
+                writer.write(messageContent);
+                if (count % 2 == 0) {
+                    writer.write("\n");
+                }
+                count++;
                 writer.flush();
   /*              String response = reader.readLine();
                 System.out.println(response + "\n");*/
