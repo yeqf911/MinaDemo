@@ -12,9 +12,12 @@ public class MyTextLineCodecFactory implements ProtocolCodecFactory {
 
     private MyProtocolDecoder mDecoder;
     private MyProtocolEncoder mEncode;
+    private MyTextLineCumulativeDecoder decoder;
+
     public MyTextLineCodecFactory() {
         mDecoder = new MyProtocolDecoder();
         mEncode = new MyProtocolEncoder();
+        decoder = new MyTextLineCumulativeDecoder();
     }
 
     @Override
@@ -24,7 +27,7 @@ public class MyTextLineCodecFactory implements ProtocolCodecFactory {
 
     @Override
     public ProtocolDecoder getDecoder(IoSession ioSession) throws Exception {
-        return mDecoder;
+        return decoder;
     }
 }
 
